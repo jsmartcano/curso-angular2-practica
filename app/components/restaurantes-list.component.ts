@@ -24,6 +24,9 @@ export class RestaurantesListComponent implements OnInit{
 	}
 
 	getRestaurantes() {
+		let box_restaurantes = <HTMLElement>document.querySelector("restaurantes-list .loading");
+		box_restaurantes.style.visibility = "visible";
+
 		this._restaurantesService.getRestaurantes()
 						.subscribe(
 							result => {
@@ -33,6 +36,8 @@ export class RestaurantesListComponent implements OnInit{
 								if (this.status !== "success") {
 									alert("Error en el servidor");
 								}
+								box_restaurantes.style.display = "none";
+		
 							},
 
 							error => {
