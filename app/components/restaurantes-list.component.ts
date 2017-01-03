@@ -1,6 +1,7 @@
 import {Component, OnInit} from "angular2/core";
 import {ROUTER_DIRECTIVES, RouteConfig, Router} from "angular2/router";
 import {RestauranteService} from "../services/restaurante.service";
+import {Restaurante} from "../models/restaurante";
 
 
 @Component({
@@ -11,10 +12,36 @@ import {RestauranteService} from "../services/restaurante.service";
 
 export class RestaurantesListComponent implements OnInit{
 	public titulo = "Listado de restaurantes";
+	public restaurantes: Restaurante[];
+	public status: string;
+	public errorMessage: any;
 
 	constructor(private _restaurantesService: RestauranteService){}
 
-	ngOnInit() {
+	ngOnInit() {		
 		console.log("restaurantes-list component cargado");
+		this.getRestaurantes();
+	}
+
+	getRestaurantes() {
+		this._restaurantesService.getRestaurantes()
+						.subscribe(
+							result => {
+								this.restaurantes = result.data;
+								this.status = result.status;
+
+								if (this.status !== "success") {
+									alert("Error en el servidor");
+								}
+							},
+
+							error => {
+								this.errorMessage = <any>error;
+								if (this.errorMessage !== null) {
+									console.log(this.errorMessage);
+									alert("Error en la petición");
+								}
+							}
+						);
 	}
 }
