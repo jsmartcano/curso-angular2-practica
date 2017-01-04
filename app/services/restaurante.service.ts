@@ -17,9 +17,14 @@ export class RestauranteService {
 	}
 
 
-	getRestaurante(id: string) {
-		return this._http.get("http://133.100.1.180:81/curso-angular2-practica/api-rest/restaurantes-api.php/restaurante/"+id)
-			.map(res => res.json());		
+	getRestaurante(id: string, random = null) {
+		if (random == null) {
+			return this._http.get("http://133.100.1.180:81/curso-angular2-practica/api-rest/restaurantes-api.php/restaurante/"+id)
+				.map(res => res.json());		
+		}else {
+			return this._http.get("http://133.100.1.180:81/curso-angular2-practica/api-rest/restaurantes-api.php/random-restaurante")
+				.map(res => res.json());					
+		}
 	}
 
 

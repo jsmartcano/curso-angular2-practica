@@ -54,6 +54,38 @@ System.register(["angular2/core", "angular2/router", "../services/restaurante.se
                     });
                     this._router.navigate(["Home"]);
                 };
+                RestauranteAddComponent.prototype.fileChangeEvent = function (fileInput) {
+                    var _this = this;
+                    this.filesToUpload = fileInput.target.files;
+                    this.makeFileRequest("http://133.100.1.180:81/curso-angular2-practica/api-rest/restaurantes-api.php/upload-file", [], this.filesToUpload)
+                        .then(function (result) {
+                        _this.restaurante.imagen = _this.resultUpload.filename;
+                        console.log(_this.resultUpload.filename);
+                    }, function (error) {
+                        console.log(error);
+                    });
+                };
+                RestauranteAddComponent.prototype.makeFileRequest = function (url, params, files) {
+                    return new Promise(function (resolve, reject) {
+                        var formData = new FormData();
+                        var xhr = new XMLHttpRequest();
+                        for (var i = 0; i < files.length; i++) {
+                            formData.append("uploads[]", files[i], files[i].name);
+                        }
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState == 4) {
+                                if (xhr.status == 200) {
+                                    resolve(JSON.parse(xhr.response));
+                                }
+                                else {
+                                    reject(xhr.response);
+                                }
+                            }
+                        };
+                        xhr.open("POST", url, true);
+                        xhr.send(formData);
+                    });
+                };
                 RestauranteAddComponent = __decorate([
                     core_1.Component({
                         selector: "restaurantes-add",
