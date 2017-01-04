@@ -99,6 +99,7 @@ body {
 	text-decoration: none;
 	background: #0074D9;
 	color: white;
+	cursor: pointer;
 }
 
 .btn-editar {
@@ -168,4 +169,13 @@ nav ul li a:hover {
 	color: white;
 	opacity: 0.8;
 
+}
+
+.seguro {
+	float: left;
+	position: absolute;
+	background: white;
+	padding:10px;
+	margin-top: -45px;
+	
 }

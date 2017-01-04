@@ -41,6 +41,11 @@ export class RestauranteService {
 		return this._http.post("http://133.100.1.180:81/curso-angular2-practica/api-rest/restaurantes-api.php/update-restaurante/"+restaurante.id,
 		params, {headers: headers}).map(res => res.json());
 	}
+
+	deleteRestaurante(id: string) {
+		return this._http.get("http://133.100.1.180:81/curso-angular2-practica/api-rest/restaurantes-api.php/delete-restaurante/"+id)
+			.map(res => res.json());	
+	}
 }
 
 
