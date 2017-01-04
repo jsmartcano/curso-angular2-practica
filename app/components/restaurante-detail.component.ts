@@ -12,33 +12,34 @@ import {Restaurante} from "../models/restaurante";
 
 export class RestauranteDetailComponent implements OnInit{
 
-	private parametro: string
+	public restaurante: Restaurante;
+	public errorMessage: string;
+	public status: string;
 
 	constructor(
 		private _routeParams: RouteParams,
-		private _restaurantesService: RestauranteService
+		private _restaurantesService: RestauranteService		
 	) {}
 
 	ngOnInit() {
-
-		this.parametro = this._routeParams.get("id");
-		//this.getRestaurante()
+		
+		this.getRestaurante();
 	}
 
-	/*getRestaurante() {
+	getRestaurante() {
 		
+		let id = this._routeParams.get("id");
 		
-		this._restaurantesService.getRestaurantes()
+		this._restaurantesService.getRestaurante(id)
 						.subscribe(
 							result => {
-								this.restaurantes = result.data;
+								this.restaurante = result.data;
 								this.status = result.status;
 
 								if (this.status !== "success") {
 									alert("Error en el servidor");
 								}
-								box_restaurantes.style.display = "none";
-		
+										
 							},
 
 							error => {
@@ -49,5 +50,5 @@ export class RestauranteDetailComponent implements OnInit{
 								}
 							}
 						);
-	}*/
+	}
 }

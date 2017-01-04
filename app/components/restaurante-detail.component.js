@@ -30,8 +30,25 @@ System.register(["angular2/core", "angular2/router", "../services/restaurante.se
                     this._restaurantesService = _restaurantesService;
                 }
                 RestauranteDetailComponent.prototype.ngOnInit = function () {
-                    this.parametro = this._routeParams.get("id");
-                    //this.getRestaurante()
+                    this.getRestaurante();
+                };
+                RestauranteDetailComponent.prototype.getRestaurante = function () {
+                    var _this = this;
+                    var id = this._routeParams.get("id");
+                    this._restaurantesService.getRestaurante(id)
+                        .subscribe(function (result) {
+                        _this.restaurante = result.data;
+                        _this.status = result.status;
+                        if (_this.status !== "success") {
+                            alert("Error en el servidor");
+                        }
+                    }, function (error) {
+                        _this.errorMessage = error;
+                        if (_this.errorMessage !== null) {
+                            console.log(_this.errorMessage);
+                            alert("Error en la petición");
+                        }
+                    });
                 };
                 RestauranteDetailComponent = __decorate([
                     core_1.Component({

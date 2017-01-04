@@ -15,5 +15,11 @@ export class RestauranteService {
 			.map(res => res.json());
 
 	}
+
+
+	getRestaurante(id: string) {
+		return this._http.get("http://localhost:81/curso-angular2-practica/api-rest/restaurantes-api.php/restaurante/"+id)
+			.map(res => res.json());		
+	}
 }
 
