@@ -25,9 +25,10 @@ System.register(["angular2/core", "angular2/router", "../services/restaurante.se
             }],
         execute: function() {
             RestauranteDetailComponent = (function () {
-                function RestauranteDetailComponent(_routeParams, _restaurantesService) {
+                function RestauranteDetailComponent(_routeParams, _restaurantesService, _router) {
                     this._routeParams = _routeParams;
                     this._restaurantesService = _restaurantesService;
+                    this._router = _router;
                 }
                 RestauranteDetailComponent.prototype.ngOnInit = function () {
                     this.getRestaurante();
@@ -40,7 +41,8 @@ System.register(["angular2/core", "angular2/router", "../services/restaurante.se
                         _this.restaurante = result.data;
                         _this.status = result.status;
                         if (_this.status !== "success") {
-                            alert("Error en el servidor");
+                            //alert("Error en el servidor");
+                            _this._router.navigate(["Home"]);
                         }
                     }, function (error) {
                         _this.errorMessage = error;
@@ -56,7 +58,7 @@ System.register(["angular2/core", "angular2/router", "../services/restaurante.se
                         templateUrl: "app/view/restaurante-detail.html",
                         providers: [restaurante_service_1.RestauranteService]
                     }), 
-                    __metadata('design:paramtypes', [router_1.RouteParams, restaurante_service_1.RestauranteService])
+                    __metadata('design:paramtypes', [router_1.RouteParams, restaurante_service_1.RestauranteService, router_1.Router])
                 ], RestauranteDetailComponent);
                 return RestauranteDetailComponent;
             }());
