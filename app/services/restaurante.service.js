@@ -27,11 +27,11 @@ System.register(["angular2/core", "angular2/http", "rxjs/add/operator/map"], fun
                     this._http = _http;
                 }
                 RestauranteService.prototype.getRestaurantes = function () {
-                    return this._http.get("http://localhost:81/curso-angular2-practica/api-rest/restaurantes-api.php/restaurantes")
+                    return this._http.get("http://133.100.1.180:81/curso-angular2-practica/api-rest/restaurantes-api.php/restaurantes")
                         .map(function (res) { return res.json(); });
                 };
                 RestauranteService.prototype.getRestaurante = function (id) {
-                    return this._http.get("http://localhost:81/curso-angular2-practica/api-rest/restaurantes-api.php/restaurante/" + id)
+                    return this._http.get("http://133.100.1.180:81/curso-angular2-practica/api-rest/restaurantes-api.php/restaurante/" + id)
                         .map(function (res) { return res.json(); });
                 };
                 RestauranteService = __decorate([
