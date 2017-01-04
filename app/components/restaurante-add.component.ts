@@ -11,7 +11,7 @@ import {Restaurante} from "../models/restaurante";
 })
 
 export class RestauranteAddComponent implements OnInit{
-
+	public titulo = "Crear nuevo restaurante";
 	public restaurante: Restaurante;
 	public errorMessage: string;
 	public status: string;

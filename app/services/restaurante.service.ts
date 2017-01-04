@@ -32,6 +32,15 @@ export class RestauranteService {
 		params, {headers: headers}).map(res => res.json());
 
 	}
+
+	editRestaurante(restaurante: Restaurante) {
+		let json = JSON.stringify(restaurante);
+		let params = "json="+json;
+		let headers = new Headers({"Content-Type":"application/x-www-form-urlencoded"});
+
+		return this._http.post("http://133.100.1.180:81/curso-angular2-practica/api-rest/restaurantes-api.php/update-restaurante/"+restaurante.id,
+		params, {headers: headers}).map(res => res.json());
+	}
 }
 
 
