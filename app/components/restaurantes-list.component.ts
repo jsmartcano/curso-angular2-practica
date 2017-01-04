@@ -7,7 +7,8 @@ import {Restaurante} from "../models/restaurante";
 @Component({
 	selector: "restaurantes-list",
 	templateUrl: "app/view/restaurantes-list.html",
-	providers: [RestauranteService]
+	providers: [RestauranteService],
+	directives: [ROUTER_DIRECTIVES]
 })
 
 export class RestaurantesListComponent implements OnInit{
